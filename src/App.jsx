@@ -1,28 +1,50 @@
-import { useState } from 'react'
+import React from 'react';
+import Hero from './components/Hero.jsx';
+import About from './components/About.jsx';
+import Projects from './components/Projects.jsx';
+import Contact from './components/Contact.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
+    <div className="min-h-screen bg-black text-white">
+      {/* Sticky top navigation */}
+      <header className="fixed inset-x-0 top-0 z-50 mx-auto max-w-6xl px-6">
+        <nav className="mt-6 flex items-center justify-between rounded-full border border-white/10 bg-black/50 px-4 py-2 backdrop-blur-md">
+          <a href="#home" className="text-sm font-semibold tracking-wide text-orange-300">
+            AG
+          </a>
+          <div className="hidden items-center gap-1 sm:flex">
+            {[
+              { id: '#about', label: 'About' },
+              { id: '#projects', label: 'Projects' },
+              { id: '#contact', label: 'Contact' },
+            ].map((item) => (
+              <a
+                key={item.id}
+                href={item.id}
+                className="rounded-full px-3 py-1.5 text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+          <a
+            href="#contact"
+            className="rounded-full bg-gradient-to-r from-red-500 via-orange-500 to-amber-400 px-3 py-1.5 text-xs font-bold text-black shadow-[0_8px_22px_-8px_rgba(255,87,34,0.7)]"
           >
-            Count is {count}
-          </button>
-        </div>
-      </div>
+            Hire Me
+          </a>
+        </nav>
+      </header>
+
+      <main>
+        <Hero />
+        <About />
+        <Projects />
+        <Contact />
+      </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
